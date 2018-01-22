@@ -374,6 +374,8 @@ Blockly.Toolbox.prototype.addColour_ = function(opt_tree) {
         element.style.borderLeft = border;
       }
     }
+    element.style.color = child.hexColour; //the label color same as category color
+    element.style.borderBottom = '1px solid rgba(0,0,0,.3)';  //border at the bottom of each category
     this.addColour_(child);
   }
 };

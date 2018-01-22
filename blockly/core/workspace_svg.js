@@ -153,7 +153,7 @@ Blockly.WorkspaceSvg.prototype.createDom = function(opt_backgroundClass) {
   if (opt_backgroundClass) {
     /** @type {SVGElement} */
     this.svgBackground_ = Blockly.createSvgElement('rect',
-        {'height': '100%', 'width': '100%', 'class': opt_backgroundClass},
+        {'height': '100%', 'width': '100%', 'rx': 25, 'ry':25, 'class': opt_backgroundClass},
         this.svgGroup_);
     if (opt_backgroundClass == 'blocklyMainBackground') {
       this.svgBackground_.style.fill =
