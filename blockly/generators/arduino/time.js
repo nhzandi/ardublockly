@@ -41,6 +41,34 @@ goog.require('Blockly.Arduino');
 };
 
 /**
+ * Code generator for the delaySec block.
+ * Arduino code: loop { delay(X*1000); }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['time_delaysecs'] = function(block) {
+  var delayTimeSec = Blockly.Arduino.valueToCode(
+      block, 'DELAY_TIME_SEC', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var delayTime = delayTimeSec * 1000;
+  var code = 'delay(' + delayTime + ');\n';
+  return code;
+};
+
+/**
+ * Code generator for the delayMicroseconds block.
+ * Arduino code: loop { delay(X*60*1000); }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['time_delaymins'] = function(block) {
+  var delayTimeMin = Blockly.Arduino.valueToCode(
+      block, 'DELAY_TIME_MIN', Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var delayTime = delayTimeMin * 60 * 1000;
+  var code = 'delay(' + delayTime + ');\n';
+  return code;
+};
+
+/**
  * Code generator for the elapsed time in milliseconds block.
  * Arduino code: loop { millis() }
  * @param {!Blockly.Block} block Block to generate the code from.

@@ -296,6 +296,23 @@ Blockly.Arduino.reservePin = function(block, pin, pinType, warningTag) {
 };
 
 /**
+ * Helper function to generate an array of pins (each an array of length 2) for
+ * the analogue IO.
+ * @return {!array} Two dimensional array with the name and value for the
+ *     analogue IO pins.
+ */
+Blockly.Arduino.generateAnalogIoConnector = function() {
+  var analogIo = [];
+  var Conn = [[3, 4, 2, 5], [7, 0, 6, 1]];
+  for(var j = 1 ; j < 3 ; j++){
+    for (var i = 1; i < 5; i++) {
+      analogIo['J' + j.toString() + '.' + i.toString()] = ('A' + Conn[j-1][i-1].toString());
+    }
+  }
+  return analogIo;
+};
+
+/**
  * Naked values are top-level blocks with outputs that aren't plugged into
  * anything. A trailing semicolon is needed to make this legal.
  * @param {string} line Line of generated code.

@@ -78,6 +78,35 @@ Blockly.Blocks['io_digitalread'] = {
   }
 };
 
+Blockly.Blocks['io_switchread'] = {
+  /**
+   * Block for creating a 'read pin'.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
+    this.setColour(Blockly.Blocks.io.HUE);
+    this.appendDummyInput()
+        .appendField('Read micro switch: ')
+        .appendField(new Blockly.FieldDropdown(
+            [["1", "A1"],["2", "A2"]]), 'PIN');
+    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.BOOLEAN;
+  },
+  /**
+   * Updates the content of the the pin related fields.
+   * @this Blockly.Block
+   */
+  updateFields: function() {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+        this, 'PIN', 'digitalPins');
+  }
+};
+
 Blockly.Blocks['io_builtin_led'] = {
   /**
    * Block for setting built-in LED to a state.
@@ -108,6 +137,29 @@ Blockly.Blocks['io_builtin_led'] = {
   /** @return {!string} The type of input value for the block, an integer. */
   getBlockType: function() {
     return Blockly.Types.BOOLEAN;
+  },
+};
+
+Blockly.Blocks['io_driver_led'] = {
+  /**
+   * Block for setting driver board LED to a state.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
+    this.setColour(Blockly.Blocks.io.HUE);
+    this.appendDummyInput()
+        .appendField('Set LED Number ')
+        .appendField(new Blockly.FieldDropdown(
+          [["1","0"],["2","1"],["3","2"],["4","13"]]), 'BUILT_IN_LED')
+        .appendField('to')
+        .appendField(new Blockly.FieldDropdown(
+          [["ON", "HIGH"],["OFF","LOW"]]),'STATE');
+        
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.ARD_BUILTIN_LED_TIP);
   },
 };
 
@@ -168,6 +220,58 @@ Blockly.Blocks['io_analogread'] = {
    */
   updateFields: function() {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analogPins');
+  }
+};
+
+Blockly.Blocks['io_sensorread'] = {
+  /**
+   * Block for reading an analogue input.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://arduino.cc/en/Reference/AnalogRead');
+    this.setColour(Blockly.Blocks.io.HUE);
+    this.appendDummyInput()
+        .appendField('From Connector')
+        .appendField(new Blockly.FieldDropdown(
+            [["J1", "J1"],["J2", "J2"]]), 'CONN')
+        .appendField('Read Sensor Number ')
+        .appendField(new Blockly.FieldDropdown(
+          [["1","1"],["2","2"],["3","3"],["4","4"]]),'PIN');
+    this.setOutput(true, Blockly.Types.NUMBER.output);
+    this.setTooltip(Blockly.Msg.ARD_ANALOGREAD_TIP);
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.NUMBER;
+  },
+  /**
+   * Updates the content of the the pin related fields.
+   * @this Blockly.Block
+   */
+  updateFields: function() {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analogPins');
+  }
+};
+
+Blockly.Blocks['io_sensorcalib'] = {
+/**
+   * Block for defining the Arduino setup() and loop() functions.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField('Sensors Calibration');
+    this.appendStatementInput('SETUP_FUNC');
+    this.setInputsInline(false);
+    this.setColour(Blockly.Blocks.procedures.HUE);
+    this.setTooltip('Block for Sensors Calibration Data');
+    this.setHelpUrl('https://arduino.cc/en/Reference/Loop');
+    this.contextMenu = false;
+  },
+  /** @return {!boolean} True if the block instance is in the workspace. */
+  getArduinoLoopsInstance: function() {
+    return true;
   }
 };
 

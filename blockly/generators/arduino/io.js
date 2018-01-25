@@ -56,6 +56,25 @@ Blockly.Arduino['io_digitalread'] = function(block) {
 };
 
 /**
+ * Function for reading a digital pin (X) which micro switches connected.
+ * Arduino code: setup { pinMode(X, INPUT); }
+ *               loop  { digitalRead(X)     }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['io_switchread'] = function(block) {
+    var pin = block.getFieldValue('PIN');
+    Blockly.Arduino.reservePin(
+        block, pin, Blockly.Arduino.PinTypes.INPUT, 'Digital Read');
+  
+    var pinSetupCode = 'pinMode(' + pin + ', INPUT);';
+    Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+  
+    var code = 'digitalRead(' + pin + ')';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+  };
+
+/**
  * Function for setting the state (Y) of a built-in LED (X).
  * Arduino code: setup { pinMode(X, OUTPUT); }
  *               loop  { digitalWrite(X, Y); }
@@ -76,6 +95,29 @@ Blockly.Arduino['io_builtin_led'] = function(block) {
   var code = 'digitalWrite(' + pin + ', ' + stateOutput + ');\n';
   return code;
 };
+
+/**
+ * Function for setting the state (Y) of a driver board LED (X).
+ * Arduino code: setup { pinMode(X, OUTPUT); }
+ *               loop  { digitalWrite(X, Y); }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Arduino['io_driver_led'] = function(block) {
+    var pin = block.getFieldValue('BUILT_IN_LED');
+    // var stateOutput = Blockly.Arduino.valueToCode(
+        // block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'LOW';
+    var stateOutput = block.getFieldValue('STATE');
+  
+    Blockly.Arduino.reservePin(
+        block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Set LED');
+  
+    var pinSetupCode = 'pinMode(' + pin + ', OUTPUT);';
+    Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+  
+    var code = 'digitalWrite(' + pin + ', ' + stateOutput + ');\n';
+    return code;
+  };
 
 /**
  * Function for setting the state (Y) of an analogue output (X).
@@ -124,6 +166,58 @@ Blockly.Arduino['io_analogread'] = function(block) {
 
   var code = 'analogRead(' + pin + ')';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+/**
+ * Function for reading an sensor pin value (X).
+ * Arduino code: setup { pinMode(X, INPUT); }
+ *               loop  { analogRead(X)      }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['io_sensorread'] = function(block) {
+    var number = block.getFieldValue('PIN');
+    var conn = block.getFieldValue('CONN');
+
+    var list = Blockly.Arduino.generateAnalogIoConnector();
+    var pin = list[(conn + '.' + number)];
+    Blockly.Arduino.reservePin(
+        block, pin, Blockly.Arduino.PinTypes.INPUT, 'Analogue Read');
+  
+    var pinSetupCode = 'pinMode(' + pin + ', INPUT);';
+    Blockly.Arduino.addSetup('io_' + pin, pinSetupCode, false);
+  
+    var code = 'analogRead(' + pin + ')';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+/**
+ * Function for reading an initial value from sensor pin value (X) for calibration.
+ * Arduino code: setup { pinMode(X, INPUT); }
+ *               loop  { analogRead(X)      }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['io_sensorcalib'] = function(block) {
+    // Edited version of Blockly.Generator.prototype.statementToCode
+  function statementToCodeNoTab(block, name) {
+    var targetBlock = block.getInputTargetBlock(name);
+    var code = Blockly.Arduino.blockToCode(targetBlock);
+    if (!goog.isString(code)) {
+      throw 'Expecting code from statement block "' + targetBlock.type + '".';
+    }
+    return code;
+  }
+
+  var setupBranch = Blockly.Arduino.statementToCode(block, 'SETUP_FUNC');
+  //var setupCode = Blockly.Arduino.scrub_(block, setupBranch); No comment block
+  if (setupBranch) {
+    Blockly.Arduino.addSetup('userSetupCode', setupBranch, true);
+  }
+
+  var loopBranch = '';
+  //var loopcode = Blockly.Arduino.scrub_(block, loopBranch); No comment block
+  return loopBranch;
 };
 
 /**
