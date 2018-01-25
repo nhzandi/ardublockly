@@ -59,6 +59,46 @@ Blockly.Blocks['time_delaymicros'] = {
   }
 };
 
+Blockly.Blocks['time_delaysecs'] = {
+  /**
+   * Delay block definition
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://arduino.cc/en/Reference/Delay');
+    this.setColour(Blockly.Blocks.time.HUE);
+    this.appendValueInput('DELAY_TIME_SEC')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('Delay');
+    this.appendDummyInput()
+        .appendField('seconds');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Wait specific time in minutes');
+  }
+};
+
+Blockly.Blocks['time_delaymins'] = {
+  /**
+   * Delay block definition
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('http://arduino.cc/en/Reference/Delay');
+    this.setColour(Blockly.Blocks.time.HUE);
+    this.appendValueInput('DELAY_TIME_MIN')
+        .setCheck(Blockly.Types.NUMBER.checkList)
+        .appendField('Delay');
+    this.appendDummyInput()
+        .appendField('minutes');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Wait specific time in minutes');
+  }
+};
+
 Blockly.Blocks['time_millis'] = {
   /**
    * Elapsed time in milliseconds block definition
