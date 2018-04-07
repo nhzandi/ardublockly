@@ -29,7 +29,7 @@ Blockly.Blocks['time_delay'] = {
     this.setColour(Blockly.Blocks.time.HUE);
     this.appendValueInput('DELAY_TIME_MILI')
         .setCheck(Blockly.Types.NUMBER.checkList)
-        .appendField(Blockly.Msg.ARD_TIME_DELAY);
+        .appendField('Delay');
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TIME_MS);
     this.setInputsInline(true);
@@ -50,6 +50,7 @@ Blockly.Blocks['time_delaymicros'] = {
     this.appendValueInput('DELAY_TIME_MICRO')
         .setCheck(Blockly.Types.NUMBER.checkList)
         .appendField(Blockly.Msg.ARD_TIME_DELAY);
+        // .appendField('Delay');
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TIME_DELAY_MICROS);
     this.setInputsInline(true);
@@ -69,13 +70,13 @@ Blockly.Blocks['time_delaysecs'] = {
     this.setColour(Blockly.Blocks.time.HUE);
     this.appendValueInput('DELAY_TIME_SEC')
         .setCheck(Blockly.Types.NUMBER.checkList)
-        .appendField('Delay');
+        .appendField(Blockly.Msg.ARD_TIME_DELAY);
     this.appendDummyInput()
-        .appendField('seconds');
+        .appendField(Blockly.Msg.ARD_TIME_DELAY_SECS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip('Wait specific time in minutes');
+    this.setTooltip('Wait specific time in seconds');
   }
 };
 
@@ -89,9 +90,9 @@ Blockly.Blocks['time_delaymins'] = {
     this.setColour(Blockly.Blocks.time.HUE);
     this.appendValueInput('DELAY_TIME_MIN')
         .setCheck(Blockly.Types.NUMBER.checkList)
-        .appendField('Delay');
+        .appendField(Blockly.Msg.ARD_TIME_DELAY);
     this.appendDummyInput()
-        .appendField('minutes');
+        .appendField(Blockly.Msg.ARD_TIME_DELAY_MINS);
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
