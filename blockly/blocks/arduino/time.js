@@ -29,7 +29,7 @@ Blockly.Blocks['time_delay'] = {
     this.setColour(Blockly.Blocks.time.HUE);
     this.appendValueInput('DELAY_TIME_MILI')
         .setCheck(Blockly.Types.NUMBER.checkList)
-        .appendField('Delay');
+        .appendField(Blockly.Msg.ARD_TIME_DELAY);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_TIME_MS);
     this.setInputsInline(true);
