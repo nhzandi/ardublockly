@@ -128,8 +128,9 @@
 	"ARD_MOTOR_STOP" : "موتور شماره %1 را متوقف کن",
 	"ARD_MICROSWITCH" : "میکروسوییچ شماره",
 	"ARD_DRIVER_LED" : "ال‌ای‌دی شماره %1 را %2 کن",
-	"ARD_SENSOR_READ" : "از کانکتور %1 مقادار سنسور %2 را بخوان",
+	"ARD_SENSOR_READ" : "از کانکتور %1 مقدار سنسور %2 را بخوان",
 	"ARD_TIME_DELAY_SECS" : "ثانیه",
-	"ARD_TIME_DELAY_MINS" : "دقیقه"
-
+	"ARD_TIME_DELAY_MINS" : "دقیقه",
+	"ARD_ON" : "روشن",
+	"ARD_OFF" : "خاموش"
 }

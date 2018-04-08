@@ -163,7 +163,7 @@ Blockly.Blocks['io_driver_led'] = {
           "type": "field_dropdown",
           "name": "STATE",
           "options": [
-            [Blockly.Msg.ON, "HIGH"],
+            [Blockly.Msg.ARD_ON, "HIGH"],
             [Blockly.Msg.ARD_OFF, "LOW"]
           ]
         }

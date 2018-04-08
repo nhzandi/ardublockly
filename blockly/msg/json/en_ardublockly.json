@@ -130,6 +130,8 @@
 	"ARD_DRIVER_LED" : "Turn LED %1 to %2",
 	"ARD_SENSOR_READ" : "From connector %1 Read Sensor %2",
 	"ARD_TIME_DELAY_SECS" : "seconds",
-	"ARD_TIME_DELAY_MINS" : "minutes"
+	"ARD_TIME_DELAY_MINS" : "minutes",
+	"ARD_ON" : "ON",
+	"ARD_OFF" : "OFF"
 
 }
