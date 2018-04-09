@@ -177,7 +177,7 @@
 	"MATH_ONLIST_OPERATOR_RANDOM": "مورد تصادفی از فهرست",
 	"MATH_ONLIST_TOOLTIP_RANDOM": "موردی تصادفی از فهرست را بر می‌گرداند.",
 	"MATH_MODULO_HELPURL": "https://fa.wikipedia.org/wiki/%D8%B9%D9%85%D9%84%DB%8C%D8%A7%D8%AA_%D9%BE%DB%8C%D9%85%D8%A7%D9%86%D9%87",
-	"MATH_MODULO_TITLE": "باقی‌ماندهٔ %1 + %2",
+	"MATH_MODULO_TITLE": "باقی‌ماندهٔ %1 ÷ %2",
 	"MATH_MODULO_TOOLTIP": "باقی‌ماندهٔ تقسیم دو عدد را بر می‌گرداند.",
 	"MATH_CONSTRAIN_TITLE": "محدودکردن %1 پایین %2 بالا %3",
 	"MATH_CONSTRAIN_TOOLTIP": "محدودکردن یک عدد بین محدودیت‌های مشخص‌شده (بسته).",
@@ -330,5 +330,13 @@
 	"PROCEDURES_HIGHLIGHT_DEF": "برجسته‌سازی تعریف تابع",
 	"PROCEDURES_CREATE_DO": "ساختن «%1»",
 	"PROCEDURES_IFRETURN_TOOLTIP": "اگر یک مقدار صحیح است، مقدار دوم را برگردان.",
-	"PROCEDURES_IFRETURN_WARNING": "اخطار: این بلوک احتمالاً فقط داخل یک تابع استفاده می‌شود."
+	"PROCEDURES_IFRETURN_WARNING": "اخطار: این بلوک احتمالاً فقط داخل یک تابع استفاده می‌شود.",
+	"TOOLBOX_LOGIC" : "منطقی ",
+	"TOOLBOX_LOOPS" : "حلقه ",
+	"TOOLBOX_MATH" : "ریاضی ",
+	"TOOLBOX_VAR" : "متغیرها ",
+	"TOOLBOX_FUNC" : "توابع ",
+	"TOOLBOX_SENSOR" : "سنسورها ",
+	"TOOLBOX_OUTPUT" : "خروجی‌ها ",
+	"TOOLBOX_TIME" : "تاخیر "
 }
