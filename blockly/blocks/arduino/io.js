@@ -18,7 +18,8 @@ goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.io.HUE = 250;
+// Blockly.Blocks.io.HUE = 250;
+Blockly.Blocks.io.HUE = '#ffcc00';
 
 Blockly.Blocks['io_digitalwrite'] = {
   /**
@@ -89,7 +90,7 @@ Blockly.Blocks['io_switchread'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ARD_MICROSWITCH)
         .appendField(new Blockly.FieldDropdown(
-            [["1", "A1"],["2", "A2"]]), 'PIN');
+            [["1", "A1"],["2", "A5"]]), 'PIN');
     this.setOutput(true, Blockly.Types.BOOLEAN.output);
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
   },
@@ -153,10 +154,10 @@ Blockly.Blocks['io_driver_led'] = {
           "type": "field_dropdown",
           "name": "BUILT_IN_LED",
           "options": [
-            ["1", "0"],
-            ["2", "1"],
-            ["3", "2"],
-            ["4", "13"]
+            ["1", "2"],
+            ["2", "13"],
+            ["3", "1"],
+            ["4", "0"]
           ]
         },
         {
@@ -336,27 +337,6 @@ Blockly.Blocks['io_sensorread'] = {
 //     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analogPins');
 //   }
 // };
-
-Blockly.Blocks['io_sensorcalib'] = {
-/**
-   * Block for defining the Arduino setup() and loop() functions.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.appendDummyInput()
-        .appendField('Sensors Calibration');
-    this.appendStatementInput('SETUP_FUNC');
-    this.setInputsInline(false);
-    this.setColour(Blockly.Blocks.procedures.HUE);
-    this.setTooltip('Block for Sensors Calibration Data');
-    this.setHelpUrl('https://arduino.cc/en/Reference/Loop');
-    this.contextMenu = false;
-  },
-  /** @return {!boolean} True if the block instance is in the workspace. */
-  getArduinoLoopsInstance: function() {
-    return true;
-  }
-};
 
 Blockly.Blocks['io_highlow'] = {
   /**

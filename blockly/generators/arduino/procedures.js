@@ -159,3 +159,33 @@ Blockly.Arduino['arduino_functions'] = function(block) {
   //var loopcode = Blockly.Arduino.scrub_(block, loopBranch); No comment block
   return loopBranch;
 };
+
+
+/**
+ * Function for running the code in the start of program.
+ * Arduino code: setup { pinMode(X, INPUT); }
+ *               loop  { analogRead(X)      }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {array} Completed code with order of operation.
+ */
+Blockly.Arduino['arduino_functions_setup'] = function(block) {
+  // Edited version of Blockly.Generator.prototype.statementToCode
+  function statementToCodeNoTab(block, name) {
+    var targetBlock = block.getInputTargetBlock(name);
+    var code = Blockly.Arduino.blockToCode(targetBlock);
+    if (!goog.isString(code)) {
+      throw 'Expecting code from statement block "' + targetBlock.type + '".';
+    }
+    return code;
+  }
+
+  var setupBranch = Blockly.Arduino.statementToCode(block, 'SETUP_FUNC');
+  //var setupCode = Blockly.Arduino.scrub_(block, setupBranch); No comment block
+  if (setupBranch) {
+    Blockly.Arduino.addSetup('userSetupCode', setupBranch, true);
+  }
+
+  var loopBranch = '';
+  //var loopcode = Blockly.Arduino.scrub_(block, loopBranch); No comment block
+  return loopBranch;
+};
