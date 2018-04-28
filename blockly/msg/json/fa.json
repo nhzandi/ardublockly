@@ -331,12 +331,12 @@
 	"PROCEDURES_CREATE_DO": "ساختن «%1»",
 	"PROCEDURES_IFRETURN_TOOLTIP": "اگر یک مقدار صحیح است، مقدار دوم را برگردان.",
 	"PROCEDURES_IFRETURN_WARNING": "اخطار: این بلوک احتمالاً فقط داخل یک تابع استفاده می‌شود.",
-	"TOOLBOX_LOGIC" : "منطقی ",
-	"TOOLBOX_LOOPS" : "حلقه ",
-	"TOOLBOX_MATH" : "ریاضی ",
+	"TOOLBOX_LOGIC" : "دستورات منطقی ",
+	"TOOLBOX_LOOPS" : "دستورات حلقه ",
+	"TOOLBOX_MATH" : "عملیات ریاضی ",
 	"TOOLBOX_VAR" : "متغیرها ",
 	"TOOLBOX_FUNC" : "توابع ",
-	"TOOLBOX_SENSOR" : "سنسورها ",
-	"TOOLBOX_OUTPUT" : "خروجی‌ها ",
-	"TOOLBOX_TIME" : "تاخیر "
+	"TOOLBOX_SENSOR" : "حسگرها",
+	"TOOLBOX_OUTPUT" : "عملگرها ",
+	"TOOLBOX_TIME" : "تاخیر زمانی"
 }
