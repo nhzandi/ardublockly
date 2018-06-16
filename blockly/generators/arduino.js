@@ -303,7 +303,7 @@ Blockly.Arduino.reservePin = function(block, pin, pinType, warningTag) {
  */
 Blockly.Arduino.generateAnalogIoConnector = function() {
   var analogIo = [];
-  var Conn = [[3, 4, 2, 5], [7, 0, 6, 1]];
+  var Conn = [[2, 3, 4, 5], [6, 7, 0, 1]];
   for(var j = 1 ; j < 3 ; j++){
     for (var i = 1; i < 5; i++) {
       analogIo['J' + j.toString() + '.' + i.toString()] = ('A' + Conn[j-1][i-1].toString());
