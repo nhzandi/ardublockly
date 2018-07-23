@@ -37,6 +37,12 @@ Blockly.Arduino['variables_set'] = function(block) {
       Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
   var varName = Blockly.Arduino.variableDB_.getName(
       block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+//   console.log(Blockly.Types.getChildBlockType(block).typeId);
+  if(Blockly.Types.getChildBlockType(block).typeId === 'Array'){
+      var code = 'int ' + varName + '[] = ' + argument0 + ';\n';
+      Blockly.Arduino.definitions_[varName] = code;
+      return "";
+  }
   return varName + ' = ' + argument0 + ';\n';
 };
 

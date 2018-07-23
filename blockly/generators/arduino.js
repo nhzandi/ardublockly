@@ -59,6 +59,10 @@ Blockly.Arduino.ORDER_LOGICAL_AND = 11;   // &&
 Blockly.Arduino.ORDER_LOGICAL_OR = 12;    // ||
 Blockly.Arduino.ORDER_CONDITIONAL = 13;   // expr ? expr : expr
 Blockly.Arduino.ORDER_ASSIGNMENT = 14;    // = *= /= ~/= %= += -= <<= >>= &= ^= |=
+Blockly.Arduino.ORDER_COMMA = 15;         //,
+Blockly.Arduino.ORDER_UNARY_NEGATION = 16;  //-
+Blockly.Arduino.ORDER_MEMBER = 17;              // . []
+Blockly.Arduino.ORDER_FUNCTION_CALL = 18;  // ()
 Blockly.Arduino.ORDER_NONE = 99;          // (...)
 
 /**
@@ -120,9 +124,12 @@ Blockly.Arduino.init = function(workspace) {
 
   // Set variable declarations with their Arduino type in the defines dictionary
   for (var varName in varsWithTypes) {
-    Blockly.Arduino.addVariable(varName,
-        Blockly.Arduino.getArduinoType_(varsWithTypes[varName]) +' ' +
-        Blockly.Arduino.variableDB_.getName(varName, Blockly.Variables.NAME_TYPE) + ';');
+    // console.log(Blockly.Arduino.getArduinoType_(varsWithTypes[varName]));
+    if(Blockly.Arduino.getArduinoType_(varsWithTypes[varName]) != 'array'){
+      Blockly.Arduino.addVariable(varName,
+          Blockly.Arduino.getArduinoType_(varsWithTypes[varName]) +' ' +
+          Blockly.Arduino.variableDB_.getName(varName, Blockly.Variables.NAME_TYPE) + ';');
+      }
   }
 };
 
@@ -385,6 +392,7 @@ Blockly.Arduino.scrub_ = function(block, code) {
  * @private
  */
 Blockly.Arduino.getArduinoType_ = function(typeBlockly) {
+  // console.log(typeBlockly.typeId);
   switch (typeBlockly.typeId) {
     case Blockly.Types.SHORT_NUMBER.typeId:
       return 'char';
@@ -400,6 +408,8 @@ Blockly.Arduino.getArduinoType_ = function(typeBlockly) {
       return 'char';
     case Blockly.Types.BOOLEAN.typeId:
       return 'boolean';
+    case Blockly.Types.ARRAY.typeId:
+      return 'array';
     case Blockly.Types.NULL.typeId:
       return 'void';
     case Blockly.Types.UNDEF.typeId:

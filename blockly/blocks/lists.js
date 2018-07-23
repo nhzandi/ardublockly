@@ -65,9 +65,13 @@ Blockly.Blocks['lists_create_with'] = {
     this.setColour(Blockly.Blocks.lists.HUE);
     this.itemCount_ = 3;
     this.updateShape_();
-    this.setOutput(true, 'Array');
+    this.setOutput(true, Blockly.Types.ARRAY);
     this.setMutator(new Blockly.Mutator(['lists_create_with_item']));
     this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.ARRAY;
   },
   /**
    * Create XML to represent list inputs.
@@ -234,7 +238,11 @@ Blockly.Blocks['lists_repeat'] = {
       "tooltip": Blockly.Msg.LISTS_REPEAT_TOOLTIP,
       "helpUrl": Blockly.Msg.LISTS_REPEAT_HELPURL
     });
-  }
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.ARRAY;
+  },
 };
 
 Blockly.Blocks['lists_length'] = {
@@ -257,7 +265,11 @@ Blockly.Blocks['lists_length'] = {
       "tooltip": Blockly.Msg.LISTS_LENGTH_TOOLTIP,
       "helpUrl": Blockly.Msg.LISTS_LENGTH_HELPURL
     });
-  }
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.NUMBER;
+  },
 };
 
 Blockly.Blocks['lists_isEmpty'] = {
@@ -348,6 +360,10 @@ Blockly.Blocks['lists_getIndex'] = {
           thisBlock.getFieldValue('WHERE');
       return Blockly.Msg['LISTS_GET_INDEX_TOOLTIP_' + combo];
     });
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.NUMBER;
   },
   /**
    * Create XML to represent whether the block is a statement or a value.

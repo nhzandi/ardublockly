@@ -57,6 +57,9 @@ Blockly.Arduino['procedures_defreturn'] = function(block) {
     returnType = block.getReturnType();
   }
   returnType = Blockly.Arduino.getArduinoType_(returnType);
+  if(returnType === 'Invalid Blockly Type'){
+    returnType = 'int';
+  }
 
   // Construct code
   var code = returnType + ' ' + funcName + '(' + args.join(', ') + ') {\n' +

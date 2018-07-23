@@ -165,18 +165,27 @@ Blockly.Types.getChildBlockType = function(block) {
   var nextBlock = block;
   // Only checks first input block, so it decides the type. Incoherences amongst
   // multiple inputs dealt at a per-block level with their own block warnings
+  // console.log("before while");
   while (nextBlock && (nextBlock.getBlockType === undefined) &&
          (nextBlock.inputList.length > 0) &&
          (nextBlock.inputList[0].connection)) {
     nextBlock = nextBlock.inputList[0].connection.targetBlock();
+    // console.log(nextBlock.getBlockType);
+    // console.log(block.getBlockType);
+    // console.log("in while");
   }
   if (nextBlock === block) {
     // Set variable block is empty, so no type yet
     blockType = Blockly.Types.CHILD_BLOCK_MISSING;
+    // console.log("1st");
   } else if (nextBlock === null) {
     // Null return from targetBlock indicates no block connected
     blockType = Blockly.Types.CHILD_BLOCK_MISSING;
+    // console.log("2nd");
   } else {
+    // console.log("else");
+    // console.log(nextBlock.getBlockType());
+    // console.log(block.getBlockType());
     var func = nextBlock.getBlockType;
     if (func) {
       blockType = nextBlock.getBlockType();
@@ -185,6 +194,7 @@ Blockly.Types.getChildBlockType = function(block) {
       blockType = Blockly.Types.NULL;
     }
   }
+  // console.log(blockType);
   return blockType;
 };
 
